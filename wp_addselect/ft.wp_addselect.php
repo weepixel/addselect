@@ -27,7 +27,7 @@ class Wp_addselect_ft extends EE_Fieldtype {
 
 	var $info = array(
 		'name'		=> 'WP AddSelect',
-		'version'	=> '0.9.0'
+		'version'	=> '0.9.1'
 	);
 
 	var $has_array_data = TRUE;
@@ -99,7 +99,6 @@ class Wp_addselect_ft extends EE_Fieldtype {
 			});
 					
 			if("'.$data.'"!="" && $("option", "select[name=select_'.$this->field_name.']").filter(function(){return this.value == "'.html_entity_decode($data, ENT_QUOTES).'"}).length == 0){
-				alert("'.$data.'");
 				$("input[name=wp_addselect_' . $this->field_name . '_new_item]")
 				.show().val($("input[name='.$this->field_name.']").val());
 				$("input[name='.$this->field_name.']").prev("span").hide();
@@ -230,7 +229,6 @@ class Wp_addselect_ft extends EE_Fieldtype {
 					});
 																		
 					if($(".wp_addselect_value", cell.dom.$td).val() !="" && $("option", $("select", cell.dom.$td)).filter(function(){return this.value == $(".wp_addselect_value", cell.dom.$td).val();}).length == 0){
-						alert($(".wp_addselect_value", cell.dom.$td));
 						$(".wp_addselect_new", cell.dom.$td).show().val($(".wp_addselect_value", cell.dom.$td).val());
 						$(".wp_addselect_add", cell.dom.$td).parent("span").hide();
 						$("select", cell.dom.$td).hide();

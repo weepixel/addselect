@@ -29,7 +29,7 @@ class Wp_addselect_ext
 
 	public $settings = array();
 	public $name = "WP AddSelect";
-	public $version = "0.9.0";
+	public $version = "0.9.1";
 	public $description = '';
 	public $settings_exist = FALSE;
 	public $docs_url = "http://weepixel.com";
