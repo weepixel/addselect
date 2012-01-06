@@ -182,19 +182,19 @@ class Wp_addselect_ft extends EE_Fieldtype {
 		
 		$r.= form_input(
 			array(
-				'name' => $this->cell_name,
-				'value'=>$data,
-				'class'=>'wp_addselect_value field',
-				'style'=>'display:none'
+				'name'  => $this->cell_name,
+				'value' => html_entity_decode($data, ENT_QUOTES),
+				'class' => 'wp_addselect_value field',
+				'style' => 'display:none'
 			)
 		);
 		
 		$r.= form_input(
 			array(
-				'label'=>'Add new item',
-				'name'=>'wp_addselect_'.$this->cell_name.'_new_item',
-				'class'=>'wp_addselect_new field',
-				'style'=>'width:200px; float:left;margin-right:10px; display:none'
+				'label' => 'Add new item',
+				'name'  => 'wp_addselect_'.$this->cell_name.'_new_item',
+				'class' => 'wp_addselect_new field',
+				'style' => 'width:200px; float:left;margin-right:10px; display:none'
 			)
 		);
 		
