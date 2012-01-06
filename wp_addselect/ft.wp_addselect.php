@@ -27,7 +27,7 @@ class Wp_addselect_ft extends EE_Fieldtype {
 
 	var $info = array(
 		'name'		=> 'WP AddSelect',
-		'version'	=> '0.9.1'
+		'version'	=> '0.9.2'
 	);
 
 	var $has_array_data = TRUE;
