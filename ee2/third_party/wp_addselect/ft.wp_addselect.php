@@ -1,4 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+// include config file
+require PATH_THIRD.'wp_addselect/config'.EXT;
+
 /**
  * ExpressionEngine - by EllisLab
  *
@@ -26,9 +30,20 @@
 class Wp_addselect_ft extends EE_Fieldtype {
 
 	var $info = array(
-		'name'		=> 'WP AddSelect',
-		'version'	=> '0.9.2'
+		'name'		=> WP_ADDSELECT_NAME,
+		'version'	=> WP_ADDSELECT_VERSION
 	);
+	
+	/**
+	 * Include fieldtype style
+	 *
+	 * @param string
+	 * @return void
+	 */
+	private function _include_theme_css($file)
+	{
+		$this->EE->cp->add_to_head('<link rel="stylesheet" type="text/css" href="'.$this->EE->config->item('theme_folder_url')."third_party/wp_addselect/".$file.'?'.$this->info['version'].'" />');
+	}
 
 	var $has_array_data = TRUE;
 
@@ -43,16 +58,18 @@ class Wp_addselect_ft extends EE_Fieldtype {
 		$this->EE->load->helper('custom_field');
 		$values = decode_multi_field($data);
 		$field_options = $this->_get_field_options($data);
+		
+		$this->_include_theme_css('styles/wp_addselect.css');
 
 		// Field form
 		$r = form_dropdown(
 			"select_" . $this->field_name, $field_options, $values, 'dir="' .
 			$this->settings['field_text_direction'] .
-			'" style="float:left;margin-right:10px;margin-top:4px" id="' .
+			'" style="float:left;margin-right:10px;margin-top:3px" id="' .
 			$this->field_id . '"'
 		);
 		
-		$r.= "<span style='float:left;margin-top:4px;clear:right;'>or <a class='wp_addselect_add' href='#' title='Add item'>add item</a></span>";
+		$r.= "<span style='float:left;margin-top:4px;clear:right;'><a class='wp_addselect_add' href='#' title='Add item'>add item</a></span>";
 		
 		// Add item text field (hidden initially)
 		$r.= form_input(
@@ -105,9 +122,10 @@ class Wp_addselect_ft extends EE_Fieldtype {
 				$("#wp_addselect_'.$this->field_name.'_new_item").next("span").show();
 				$("select[name=select_'.$this->field_name.']").hide();
 			}
-					
-			// $("input[name='.$this->field_name.']").attr("value", $("select[name=select_'.$this->field_name.']").val());
-			
+			else{
+				$("input[name='.$this->field_name.']").attr("value", $("select[name=select_'.$this->field_name.']").val());
+			}
+						
 			$("#wp_addselect_'.$this->field_name.'_new_item").keypress(function(e){
 				if(e.which == 13){
 					return false;
@@ -174,11 +192,11 @@ class Wp_addselect_ft extends EE_Fieldtype {
 			$field_options,
 			$values,
 			'dir="' . $this->settings['field_text_direction'] .
-			'"style="float:left;margin-right:10px;margin-top:4px" id="' .
+			'"style="float:left;margin-right:10px;margin-top:3px" id="' .
 			$this->field_id.'"'
 		);
 		
-		$r.= "<span style='float:left;margin-top:4px'>or <a class='wp_addselect_add' href='#' title='Add item'>add item</a></span>";
+		$r.= "<span style='float:left;margin-top:4px'><a class='wp_addselect_add' href='#' title='Add item'>add item</a></span>";
 		
 		$r.= form_input(
 			array(

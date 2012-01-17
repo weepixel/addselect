@@ -1,5 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// include config file
+require PATH_THIRD.'wp_addselect/config'.EXT;
+
 /**
  * ExpressionEngine - by EllisLab
  *
@@ -28,8 +31,8 @@ class Wp_addselect_ext
 {
 
 	public $settings = array();
-	public $name = "WP AddSelect";
-	public $version = "0.9.2";
+	public $name = WP_ADDSELECT_NAME;
+	public $version = WP_ADDSELECT_VERSION;
 	public $description = '';
 	public $settings_exist = FALSE;
 	public $docs_url = "http://weepixel.com";
